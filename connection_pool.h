@@ -21,6 +21,7 @@ public:
 	void SetHighWaterMarkCallback(const HighWaterMarkCallback &cb){
 		highWaterMarkCallback_ = cb; cb();
 	}
+	void SetRefreshTimeout(int t) { refreshTimeout_ = t}
 	int ReleaseConnection(const Connection &conn){};
 private:
 	const static int HighWaterMark = 1024;
@@ -28,5 +29,6 @@ private:
 	ConnectionList list_;
 	MutexLock lock_;
 	HighWaterMarkCallback highWaterMarkCallback_;
+	int refreshTimeout_;
 };
 #endif
