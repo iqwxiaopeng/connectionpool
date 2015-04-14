@@ -2,6 +2,7 @@
 #include <memory>
 #include <iostream>
 #include <mysql_connection.h>
+#include <stdio.h>
 using namespace std;
 
 void echo()
@@ -26,13 +27,12 @@ char* init()
 using namespace yang;
 int main()
 {
-//     ConnectionPool pool;
-//     pool.GetConnection();
-// 	pool.SetHighWaterMarkCallback(bind(&echo));
 	typedef std::shared_ptr<MySQLConn> Connection;
 	Connection conn(new MySQLConn());
 	cout << conn->Connect("192.168.0.129", "SCS", "123456", 2000) << endl;
 	ResultSet set = conn->ExecuteQuery("show databases");
-	cout << set->GetString() << endl;
+	weak_ptr<MySQLRes> wp(set);
+	printf("weak_ptr %d\n", set.use_count());
+	cout << set->GetString(0) << endl;
     return 0;
 }

@@ -30,6 +30,8 @@ namespace yang
 		bool Connecting() const { return connecting_; }
 		int Execute(const char *sql);
 		ResultSet ExecuteQuery(const char *sql);
+		const char* GetError();
+		int GetErrno();
 	private:
 		ResultSet result_;
 		MySQL mysql_;
