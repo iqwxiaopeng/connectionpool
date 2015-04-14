@@ -5,8 +5,7 @@
 #include <mutex.h>
 #include <mysql_connection.h>
 #include <nocopyable.h>
-#include <boost/shared_ptr.hpp>
-#include <boost/function.hpp>
+
 namespace yang
 {
 
